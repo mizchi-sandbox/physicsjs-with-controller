@@ -204,13 +204,15 @@
 	      }
 	    ]
 	  });
-	  world.on({
-	    'interact:poke': function(pos) {
-	      return console.log('poked');
-	    },
-	    'interact:release': function() {
-	      return console.log('released');
+	  world.on('collisions:detected', function(data, e) {
+	    var d, _i, _len, _ref, _results;
+	    _ref = data.collisions;
+	    _results = [];
+	    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+	      d = _ref[_i];
+	      _results.push(console.log('id', d));
 	    }
+	    return _results;
 	  });
 	  window.player = Physics.body('circle', {
 	    x: 140,
